@@ -110,4 +110,5 @@ def canonical(context):
     if not page:
         return ''
     else:
-        return mark_safe(f'<link rel="canonical" href="{page.full_url}">')
+        full_url = page.full_url.replace('http://', 'https://')
+        return mark_safe(f'<link rel="canonical" href="{full_url}">')
