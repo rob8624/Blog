@@ -217,7 +217,7 @@ class BlogListingPage(MetadataPageMixin, RoutablePageMixin, Page):
     
 #related posts was referenceing this https://www.yellowduck.be/posts/showing-related-pages-similar-tags-wagtail/   
 class BlogPostManager(PageManager):
-    def related_posts(self, post, max_items=5):
+    def related_posts(self, post, max_items=4):
         type = post.type.all()
         matches = BlogDetailPage.objects.filter(type__in=type).live()
         matches = matches.exclude(pk=post.pk)
