@@ -10,7 +10,7 @@ from home.models import RobotsView
 
 
 from search import views as search_views
-from debug_toolbar.toolbar import debug_toolbar_urls
+
 
 import environ
 env = environ.Env()
@@ -26,7 +26,7 @@ urlpatterns = [
     path('robots.txt', RobotsView.as_view(), name='robots'),
     
    
-] + debug_toolbar_urls()
+] 
 
 
 if settings.DEBUG:
