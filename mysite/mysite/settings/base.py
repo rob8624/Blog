@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     "django.contrib.sitemaps",
     'tailwind',
     'theme',
+    "debug_toolbar",
     
     
    
@@ -100,6 +101,7 @@ MIDDLEWARE = [
     "django_browser_reload.middleware.BrowserReloadMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
     "home.middleware.SimpleMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
    
     
     
@@ -137,7 +139,7 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-live_deploy = True
+live_deploy = False
 if live_deploy == True:
 
     
@@ -349,3 +351,9 @@ EMAIL_HOST_USER = 'robert_melen@yahoo.co.uk'
 EMAIL_HOST_PASSWORD = 'gfdfgfdgdfg'
 EMAIL_PORT = 4566
 EMAIL_USE_TLS = True
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
