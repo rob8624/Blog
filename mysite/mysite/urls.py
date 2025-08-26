@@ -8,6 +8,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.contrib.sitemaps.views import sitemap
 from home.models import RobotsView
 
+import debug_toolbar 
 
 from search import views as search_views
 
@@ -24,6 +25,7 @@ urlpatterns = [
     path("search/", search_views.search, name="search"),
     path("__reload__/", include("django_browser_reload.urls")),
     path('robots.txt', RobotsView.as_view(), name='robots'),
+    path('__debug__/', include(debug_toolbar.urls)), 
     
    
 ] 

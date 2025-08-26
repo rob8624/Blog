@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     "django.contrib.sitemaps",
     'tailwind',
     'theme',
+    'debug_toolbar', 
     
     
     
@@ -97,6 +98,9 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     'home.middleware.VisitorMiddleware',
+
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+   'debug_toolbar.middleware.DebugToolbarMiddleware',  
     
     "django_browser_reload.middleware.BrowserReloadMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
@@ -320,9 +324,7 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 
 mimetypes.add_type("application/javascript", ".js", True)
 
-DEBUG_TOOLBAR_CONFIG = {
-    "INTERCEPT_REDIRECTS": False,
-}
+
 
 
 ALLOWED_HOSTS = '192.168.1.254'
@@ -351,4 +353,11 @@ EMAIL_HOST_USER = 'robert_melen@yahoo.co.uk'
 EMAIL_HOST_PASSWORD = 'gfdfgfdgdfg'
 EMAIL_PORT = 4566
 EMAIL_USE_TLS = True
+
+def show_toolbar(request):                                     # <-- NEW
+    return True                                                # <-- NEW 
+
+DEBUG_TOOLBAR_CONFIG = {                                       # <-- NEW
+    "SHOW_TOOLBAR_CALLBACK" : show_toolbar,                    # <-- NEW
+}                                                              # <-- NEW
 
