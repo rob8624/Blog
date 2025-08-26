@@ -301,16 +301,13 @@ class HomePage(MetadataPageMixin, RoutablePageMixin, Page):
     
    
     def serve(self, request, *args, **kwargs):
-        # Call the middleware to set the session variable
-        super().serve(request, *args, **kwargs)
+        response = super().serve(request, *args, **kwargs)
 
         if request.session.get('needs_cookie', False):
-            # Set the cookie if the needs_cookie session variable is True
-            response = super().serve(request, *args, **kwargs)
             response.set_cookie('visitor_id', request.visitor_id)
-            request.session['needs_cookie'] = False  # Reset the session variable
+            request.session['needs_cookie'] = False
             return response
-        
+
         if request.htmx:
             if request.htmx.trigger == "accept":
                 response = HttpResponse()
@@ -320,10 +317,8 @@ class HomePage(MetadataPageMixin, RoutablePageMixin, Page):
                 response = HttpResponse()
                 response.set_cookie('declined', True)
                 return response
-            
-      
-        return super().serve(request, *args, **kwargs)
-                
+
+        return response
                     
 
 
